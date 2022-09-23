@@ -1,24 +1,22 @@
-import logo from './logo.svg';
+
 import './App.css';
+import { Container } from '@mui/system';
+import { TextField, Typography } from '@mui/material';
+import { useState } from 'react';
 
 function App() {
+  const[data,setData]=useState('')
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+    <center>
+    <Typography variant='h2'>Todo</Typography>
+    <Container>
+      <TextField type="text" style={{"width":"500px","margin":"5px"}} label="Name" variant="outlined" onChange={(e)=>setData(e.target.value)}></TextField>
+    </Container>
+    {data}
+    </center>
+    </>
+      
   );
 }
 
