@@ -17,4 +17,3 @@ function App() {
 }
 
 export default App;
-// yarn add @mui/material @emotion/react @emotion/styled
