@@ -1,14 +1,14 @@
 
 import './App.css';
-import { List, ListItem, ListItemIcon, ListItemText} from '@mui/material'
+import { Container,List, ListItem, ListItemIcon, ListItemText} from '@mui/material'
 import FolderIcon from '@mui/icons-material/Folder';
 
 function App() {
   return (
-    
+    <Container>
            
-              <List>
-                <ListItem>
+              <List dense>
+                <ListItem >
                     <ListItemIcon><FolderIcon /></ListItemIcon>
                     <ListItemText primary="Single-line item"/>
                 </ListItem>
@@ -24,14 +24,14 @@ function App() {
                   <ListItemIcon>
                     <FolderIcon />
                     </ListItemIcon>
-                    <ListItemText primary="single-line item"/>
+                    <ListItemText primary="Single-line item"/>
                  
                   
                 </ListItem>
                 </List>
           
          
-       
+                </Container>
   );
 }
 
