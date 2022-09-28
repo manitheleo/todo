@@ -1,6 +1,6 @@
 
 import './App.css';
-import {TextField,Container,List, ListItem, ListItemIcon, ListItemText} from '@mui/material'
+import {TextField,Container,List, ListItem, ListItemIcon, ListItemText, Button, InputAdornment} from '@mui/material'
 import FolderIcon from '@mui/icons-material/Folder';
 
 
@@ -11,8 +11,18 @@ function App() {
        
        
        <Container>
-        <TextField  variant="outlined" size="small" label='Name'/>
-        <List dense>
+         
+        
+        <TextField label="Name" variant="outlined" InputProps={{ endAdornment: (
+            <InputAdornment position="end">
+              <Button variant='contained' color="primary">
+              add to todo list
+              </Button>
+            </InputAdornment>
+          ),
+        }}
+      />
+       <List dense>
         
                 <ListItem >
                     <ListItemIcon><FolderIcon /></ListItemIcon>
