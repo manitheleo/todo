@@ -11,8 +11,9 @@ function App() {
        
        
        <Container>
+        <TextField  variant="outlined" size="small" label='Name'/>
         <List dense>
-        <TextField  variant="outlined" size="small" label='Name'>max</TextField>
+        
                 <ListItem >
                     <ListItemIcon><FolderIcon /></ListItemIcon>
                     <ListItemText primary="Single-line item"/>
