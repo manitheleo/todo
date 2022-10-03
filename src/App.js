@@ -52,8 +52,7 @@ function App() {
               </ListItemIcon>
               <ListItemText primary={item.task} primaryTypographyProps={{color:'blue'}} />
             </ListItem>;
-          }
-          else{
+          } else {
             return <ListItem>
               <ListItemIcon>
                 <FolderIcon />
@@ -63,18 +62,7 @@ function App() {
                 <CheckBoxIcon/>
               </ListItemIcon>
             </ListItem>;
-          }
-        }
-        )
-        }
-
-
-
-
-
-
-
-
+          }})}
       </List>
     </Container>
   );
