@@ -1,4 +1,4 @@
-import "./App.css";
+import './App.css';
 import {
   TextField,
   Container,
@@ -8,16 +8,16 @@ import {
   ListItemText,
   Button,
   InputAdornment,
-} from "@mui/material";
-import FolderIcon from "@mui/icons-material/Folder";
-import CheckBoxIcon from "@mui/icons-material/CheckBox";
+} from '@mui/material';
+import FolderIcon from '@mui/icons-material/Folder';
+import CheckBoxIcon from '@mui/icons-material/CheckBox';
 
 
 function App() {
   const tasks = [
-  { task: 'first todo item', state: 'pending' }, 
-  { task: 'second todo item', state: 'in progress' }, 
-  { task: 'second todo item', state: 'completed' }];
+    { task: 'first todo item', state: 'pending' }, 
+    { task: 'second todo item', state: 'in progress' }, 
+    { task: 'second todo item', state: 'completed' }];
   return (
     <Container>
       
@@ -36,37 +36,37 @@ function App() {
       />
       <List dense>
 
-{tasks.map((item,index)=> {
-  if(item.state==='pending'){
+        {tasks.map((item,index)=> {
+          if(item.state==='pending'){
   
-return <ListItem>
- <ListItemIcon>
-   <FolderIcon />
-       </ListItemIcon>
-<ListItemText primary={item.task}  primaryTypographyProps={{color:'green'}}  />
-</ListItem>;
-  }else if(item.state==='in progress'){
-   return  <ListItem>
- <ListItemIcon>
-   <FolderIcon />
-       </ListItemIcon>
-<ListItemText primary={item.task}  primaryTypographyProps={{color:'blue'}}  />
-</ListItem>;
-  }
-  else{
-    return <ListItem>
- <ListItemIcon>
-   <FolderIcon />
-       </ListItemIcon>
-<ListItemText primary={item.task} style={{textDecoration:'line-Through'}} />
-<ListItemIcon>
-<CheckBoxIcon/>
-</ListItemIcon>
-</ListItem>;
-  }
-}
-)
-}
+            return <ListItem>
+              <ListItemIcon>
+                <FolderIcon />
+              </ListItemIcon>
+              <ListItemText primary={item.task} primaryTypographyProps={{color:'green'}} />
+            </ListItem>;
+          }else if(item.state==='in progress'){
+            return <ListItem>
+              <ListItemIcon>
+                <FolderIcon />
+              </ListItemIcon>
+              <ListItemText primary={item.task} primaryTypographyProps={{color:'blue'}} />
+            </ListItem>;
+          }
+          else{
+            return <ListItem>
+              <ListItemIcon>
+                <FolderIcon />
+              </ListItemIcon>
+              <ListItemText primary={item.task} style={{textDecoration:'line-Through'}} />
+              <ListItemIcon>
+                <CheckBoxIcon/>
+              </ListItemIcon>
+            </ListItem>;
+          }
+        }
+        )
+        }
 
 
 
@@ -75,7 +75,7 @@ return <ListItem>
 
 
 
-</List>
+      </List>
     </Container>
   );
 }
