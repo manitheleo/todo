@@ -1,4 +1,4 @@
-import "./App.css";
+import './App.css';
 import {
   TextField,
   Container,
@@ -8,14 +8,21 @@ import {
   ListItemText,
   Button,
   InputAdornment,
-} from "@mui/material";
-import FolderIcon from "@mui/icons-material/Folder";
+} from '@mui/material';
+import FolderIcon from '@mui/icons-material/Folder';
+import CheckBoxIcon from '@mui/icons-material/CheckBox';
+
 
 function App() {
+  const tasks = [
+    { task: 'first todo item', state: 'pending' }, 
+    { task: 'second todo item', state: 'in progress' }, 
+    { task: 'second todo item', state: 'completed' }];
   return (
     <Container>
+      
       <TextField
-        labl="Name"
+        label="Name"
         variant="outlined"
         InputProps={{
           endAdornment: (
@@ -28,25 +35,34 @@ function App() {
         }}
       />
       <List dense>
-        <ListItem>
-          <ListItemIcon>
-            <FolderIcon />
-          </ListItemIcon>
-          <ListItemText primary="Single-line item" />
-        </ListItem>
 
-        <ListItem>
-          <ListItemIcon>
-            <FolderIcon />
-          </ListItemIcon>
-          <ListItemText primary="Single-line item" />
-        </ListItem>
-        <ListItem>
-          <ListItemIcon>
-            <FolderIcon />
-          </ListItemIcon>
-          <ListItemText primary="Single-line item" />
-        </ListItem>
+        {tasks.map((item,index)=> {
+          if(item.state==='pending'){
+  
+            return <ListItem>
+              <ListItemIcon>
+                <FolderIcon />
+              </ListItemIcon>
+              <ListItemText primary={item.task} primaryTypographyProps={{color:'green'}} />
+            </ListItem>;
+          }else if(item.state==='in progress'){
+            return <ListItem>
+              <ListItemIcon>
+                <FolderIcon />
+              </ListItemIcon>
+              <ListItemText primary={item.task} primaryTypographyProps={{color:'blue'}} />
+            </ListItem>;
+          } else {
+            return <ListItem>
+              <ListItemIcon>
+                <FolderIcon />
+              </ListItemIcon>
+              <ListItemText primary={item.task} style={{textDecoration:'line-Through'}} />
+              <ListItemIcon>
+                <CheckBoxIcon/>
+              </ListItemIcon>
+            </ListItem>;
+          }})}
       </List>
     </Container>
   );
