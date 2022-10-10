@@ -15,11 +15,12 @@ import { useState } from 'react';
 
 
 function App() {
-  const [data,setData]=useState('');
-  const tasks = [
+
+  const defaultTasks = [
     { task: 'first todo item', state: 'pending' }, 
     { task: 'second todo item', state: 'in progress' }, 
     { task: 'second todo item', state: 'completed' }];
+    const [tasks,setTasks]=useState(defaultTasks);
   return (
     <Container>
       
