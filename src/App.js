@@ -11,13 +11,16 @@ import {
 } from '@mui/material';
 import FolderIcon from '@mui/icons-material/Folder';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
+import { useState } from 'react';
 
 
 function App() {
-  const tasks = [
+
+  const defaultTasks = [
     { task: 'first todo item', state: 'pending' }, 
     { task: 'second todo item', state: 'in progress' }, 
     { task: 'second todo item', state: 'completed' }];
+    const [tasks,setTasks]=useState(defaultTasks);
   return (
     <Container>
       
@@ -34,9 +37,10 @@ function App() {
           ),
         }}
       />
+      
       <List dense>
 
-        {tasks.map((item,index)=> {
+        {tasks.map((item ,index)=> {
           if(item.state==='pending'){
   
             return <ListItem>
