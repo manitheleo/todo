@@ -47,14 +47,14 @@ function App() {
               <ListItemIcon>
                 <FolderIcon />
               </ListItemIcon>
-              <ListItemText primary={item.task} primaryTypographyProps={{color:'green'}} />
+              <ListItemText primary={item.task} primaryTypographyProps={{color:'green'}} /><Button>edit</Button><Button>delete</Button>
             </ListItem>;
           }else if(item.state==='in progress'){
             return <ListItem>
               <ListItemIcon>
                 <FolderIcon />
               </ListItemIcon>
-              <ListItemText primary={item.task} primaryTypographyProps={{color:'blue'}} />
+              <ListItemText primary={item.task} primaryTypographyProps={{color:'blue'}} /><Button>edit</Button><Button>delete</Button>
             </ListItem>;
           } else {
             return <ListItem>
@@ -65,8 +65,10 @@ function App() {
               <ListItemIcon>
                 <CheckBoxIcon/>
               </ListItemIcon>
+              <Button>edit</Button><Button>delete</Button>
             </ListItem>;
-          }})}
+          }}
+          )}
       </List>
     </Container>
   );
