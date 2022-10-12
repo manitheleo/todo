@@ -19,56 +19,135 @@ function App() {
   const defaultTasks = [
     { task: 'first todo item', state: 'pending' }, 
     { task: 'second todo item', state: 'in progress' }, 
-    { task: 'second todo item', state: 'completed' }];
+    { task: 'second todo item', state: 'completed' }
+  ];
     const [tasks,setTasks]=useState(defaultTasks);
-  return (
+    const [todo,setTodo]=useState('');
+    const [edit,setEdit]=useState(false);
+    const [currentTodo,setCurrentTodo]=useState({})
+    const handleInputChange = (e) => {
+      setTodo(e.target.value)
+    }
+    const handleEditInput = (e) => {
+      setCurrentTodo({...currentTodo, task : e.target.value})
+    }
+    const handleFormSubmit = (e) => {
+      e.preventDefault();
+      setTasks([...tasks, { id: tasks.length+1, task:todo}])
+      setTodo('')
+    }
+    const handleEditFormSubmit = (e) => {
+      e.preventDefault();
+      handleUpdateTodo(currentTodo.id, { ...currentTodo })
+    }
+    const handleUpdateTodo = (id, updateTodo)=>{
+      const updateItem=tasks.map((todo,index)=>{
+        return todo.id===id ? updateTodo : todo
+      })
+      setEdit(false);
+      setTasks(updateItem);
+    }
+    const handleEditClick = (todo, index) => {
+      setEdit(true);
+      setCurrentTodo({ ...todo });
+    }
+    const deleter = (value) => {
+      const del = tasks.filter((fine, index) => index!==value);
+      setTasks(del);
+    };
+    return (
     <Container>
-      
-      <TextField
+      {edit ? (
+      <form onSubmit={handleEditFormSubmit}>
+        <TextField
         label="Name"
-        variant="outlined"
-        InputProps={{
-          endAdornment: (
+        variant='outlined'
+        value={currentTodo.task}
+        onChange={handleEditInput}
+        />
+        <Button type="submit">Update</Button>
+        <Button onClick={()=>setEdit(false)}>cancel</Button>
+        </form>
+        ) : (
+        <form onSubmit={handleFormSubmit}>
+          <TextField
+          label="Name"
+          variant="outlined"
+          value={todo}
+          onChange={handleInputChange}
+          InputProps={{
+            endAdornment: (
             <InputAdornment position="end">
-              <Button variant="contained" color="primary">
+              <Button type="submit" variant="contained" color="primary">
                 add to todo list
-              </Button>
-            </InputAdornment>
-          ),
-        }}
-      />
-      
+                </Button>
+                </InputAdornment>
+            )
+          }}
+        />
+        </form>
+      )}
       <List dense>
-
-        {tasks.map((item ,index)=> {
-          if(item.state==='pending'){
-  
-            return <ListItem>
+        {tasks.map((item, index) => {
+          if(item.state === 'pending') {
+            return (
+            <ListItem>
               <ListItemIcon>
                 <FolderIcon />
               </ListItemIcon>
-              <ListItemText primary={item.task} primaryTypographyProps={{color:'green'}} /><Button>edit</Button><Button>delete</Button>
-            </ListItem>;
-          }else if(item.state==='in progress'){
-            return <ListItem>
+              <ListItemText
+              primary={item.task} 
+              primaryTypographyProps={{color:'green'}} 
+              />
+              <Button onClick={()=>handleEditClick(item)}>edit</Button>
+              <Button onClick={() => deleter(index)}>delete</Button>
+            </ListItem>
+            );
+          } else if (item.state==='in progress') {
+            return (
+            <ListItem>
               <ListItemIcon>
                 <FolderIcon />
               </ListItemIcon>
-              <ListItemText primary={item.task} primaryTypographyProps={{color:'blue'}} /><Button>edit</Button><Button>delete</Button>
-            </ListItem>;
-          } else {
-            return <ListItem>
+              <ListItemText 
+              primary={item.task}
+              primaryTypographyProps={{color:'blue'}}
+              />
+              <Button onClick={() => handleEditClick(item)}>edit</Button>
+              <Button onClick={() => deleter(index)}>delete</Button>
+            </ListItem>
+            )
+          } else if(item.state==='completed') {
+            return (
+            <ListItem>
               <ListItemIcon>
                 <FolderIcon />
               </ListItemIcon>
-              <ListItemText primary={item.task} style={{textDecoration:'line-Through'}} />
+              <ListItemText
+              primary={item.task}
+              style={{textDecoration:'line-Through'}}
+              />
               <ListItemIcon>
                 <CheckBoxIcon/>
               </ListItemIcon>
               <Button>edit</Button><Button>delete</Button>
-            </ListItem>;
-          }}
-          )}
+            </ListItem>
+            )
+          } else {
+            return (
+            <ListItem>
+              <ListItemIcon>
+                  <FolderIcon />
+                </ListItemIcon>
+                <ListItemText primary={item.task} />
+                <Button onClick={() => handleEditClick(item, index)}>
+                  edit
+                </Button>
+                <Button onClick={() => deleter(index)}>delete</Button>
+              </ListItem>
+            );
+          }
+        })}
       </List>
     </Container>
   );
