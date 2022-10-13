@@ -21,45 +21,45 @@ function App() {
     { task: 'second todo item', state: 'in progress' }, 
     { task: 'second todo item', state: 'completed' }
   ];
-    const [tasks,setTasks]=useState(defaultTasks);
-    const [todo,setTodo]=useState('');
-    const [edit,setEdit]=useState(false);
-    const [currentTodo,setCurrentTodo]=useState({})
-    const handleInputChange = (e) => {
-      setTodo(e.target.value)
-    }
-    const handleEditInput = (e) => {
-      setCurrentTodo({...currentTodo, task : e.target.value})
-    }
-    const handleFormSubmit = (e) => {
-      e.preventDefault();
-      setTasks([...tasks, { id: tasks.length+1, task:todo}])
-      setTodo('')
-    }
-    const handleEditFormSubmit = (e) => {
-      e.preventDefault();
-      handleUpdateTodo(currentTodo.id, { ...currentTodo })
-    }
-    const handleUpdateTodo = (id, updateTodo)=>{
-      const updateItem=tasks.map((todo,index)=>{
-        return todo.id===id ? updateTodo : todo
-      })
-      setEdit(false);
-      setTasks(updateItem);
-    }
-    const handleEditClick = (todo, index) => {
-      setEdit(true);
-      setCurrentTodo({ ...todo });
-    }
-    const deleter = (value) => {
-      const del = tasks.filter((fine, index) => index!==value);
-      setTasks(del);
-    };
-    return (
-    <Container>
-      {edit ? (
-      <form onSubmit={handleEditFormSubmit}>
-        <TextField
+  const [tasks,setTasks]=useState(defaultTasks);
+  const [todo,setTodo]=useState('');
+  const [edit,setEdit]=useState(false);
+  const [currentTodo,setCurrentTodo]=useState({})
+  const handleInputChange = (e) => {
+    setTodo(e.target.value)
+  }
+  const handleEditInput = (e) => {
+    setCurrentTodo({...currentTodo, task : e.target.value})
+  }
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    setTasks([...tasks, { id: tasks.length+1, task:todo}])
+    setTodo('')
+  }
+  const handleEditFormSubmit = (e) => {
+    e.preventDefault();
+    handleUpdateTodo(currentTodo.id, { ...currentTodo })
+  }
+  const handleUpdateTodo = (id, updateTodo) => {
+    const updateItem=tasks.map((todo,index) => {
+      return todo.id===id ? updateTodo : todo
+    })
+    setEdit(false);
+    setTasks(updateItem);
+  }
+  const handleEditClick = (todo, index) => {
+    setEdit(true);
+    setCurrentTodo({ ...todo });
+  }
+  const deleter = (value) => {
+    const del = tasks.filter((fine, index) => index!==value);
+    setTasks(del);
+  };
+  return (
+  <Container>
+    {edit ? (
+    <form onSubmit={handleEditFormSubmit}>
+      <TextField
         label="Name"
         variant='outlined'
         value={currentTodo.task}
