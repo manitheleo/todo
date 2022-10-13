@@ -17,9 +17,9 @@ import { useState } from 'react';
 function App() {
 
   const defaultTasks = [
-    { task: 'first todo item', state: 'pending',id:'1' }, 
-    { task: 'second todo item', state: 'in progress',id:'2' }, 
-    { task: 'second todo item', state: 'completed',id:'3' }
+    { task: 'first todo item', state: 'pending' }, 
+    { task: 'second todo item', state: 'in progress' }, 
+    { task: 'second todo item', state: 'completed' }
   ];
     const [tasks,setTasks]=useState(defaultTasks);
     const [todo,setTodo]=useState('');
