@@ -1,25 +1,17 @@
 import './App.css';
-import {
-  TextField,
-  Container,
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-  Button,
-  InputAdornment,
-} from '@mui/material';
-import FolderIcon from '@mui/icons-material/Folder';
-import CheckBoxIcon from '@mui/icons-material/CheckBox';
+import {Container} from '@mui/material';
+
 import { useState } from 'react';
+import EditForm from './Components/Forms/EditForm';
+import Form from './Components/Forms/Form';
+import ListsItem from './Components/ListsItem';
 
 
 function App() {
-
   const defaultTasks = [
-    { task: 'first todo item', state: 'pending' }, 
-    { task: 'second todo item', state: 'in progress' }, 
-    { task: 'second todo item', state: 'completed' }
+    { task: 'first todo item', state: 'pending', id:'1' }, 
+    { task: 'second todo item', state: 'in progress', id:'2' }, 
+    { task: 'second todo item', state: 'completed', id:'3' }
   ];
   const [tasks,setTasks]=useState(defaultTasks);
   const [todo,setTodo]=useState('');
@@ -58,97 +50,27 @@ function App() {
   return (
   <Container>
     {edit ? (
-    <form onSubmit={handleEditFormSubmit}>
-      <TextField
-        label="Name"
-        variant='outlined'
-        value={currentTodo.task}
-        onChange={handleEditInput}
-        />
-        <Button type="submit">Update</Button>
-        <Button onClick={()=>setEdit(false)}>cancel</Button>
-        </form>
-        ) : (
-        <form onSubmit={handleFormSubmit}>
-          <TextField
-          label="Name"
-          variant="outlined"
-          value={todo}
-          onChange={handleInputChange}
-          InputProps={{
-            endAdornment: (
-            <InputAdornment position="end">
-              <Button type="submit" variant="contained" color="primary">
-                add to todo list
-                </Button>
-                </InputAdornment>
-            )
-          }}
-        />
-        </form>
-      )}
-      <List dense>
-        {tasks.map((item, index) => {
-          if(item.state === 'pending') {
-            return (
-            <ListItem>
-              <ListItemIcon>
-                <FolderIcon />
-              </ListItemIcon>
-              <ListItemText
-              primary={item.task} 
-              primaryTypographyProps={{color:'green'}} 
-              />
-              <Button onClick={()=>handleEditClick(item)}>edit</Button>
-              <Button onClick={() => deleter(index)}>delete</Button>
-            </ListItem>
-            );
-          } else if (item.state==='in progress') {
-            return (
-            <ListItem>
-              <ListItemIcon>
-                <FolderIcon />
-              </ListItemIcon>
-              <ListItemText 
-              primary={item.task}
-              primaryTypographyProps={{color:'blue'}}
-              />
-              <Button onClick={() => handleEditClick(item)}>edit</Button>
-              <Button onClick={() => deleter(index)}>delete</Button>
-            </ListItem>
-            )
-          } else if(item.state==='completed') {
-            return (
-            <ListItem>
-              <ListItemIcon>
-                <FolderIcon />
-              </ListItemIcon>
-              <ListItemText
-              primary={item.task}
-              style={{textDecoration:'line-Through'}}
-              />
-              <ListItemIcon>
-                <CheckBoxIcon/>
-              </ListItemIcon>
-              <Button>edit</Button><Button>delete</Button>
-            </ListItem>
-            )
-          } else {
-            return (
-            <ListItem>
-              <ListItemIcon>
-                  <FolderIcon />
-                </ListItemIcon>
-                <ListItemText primary={item.task} />
-                <Button onClick={() => handleEditClick(item, index)}>
-                  edit
-                </Button>
-                <Button onClick={() => deleter(index)}>delete</Button>
-              </ListItem>
-            );
-          }
-        })}
-      </List>
+    <EditForm
+    handleEditFormSubmit={handleEditFormSubmit} 
+    setEdit={setEdit} 
+    currentTodo={currentTodo} 
+    handleEditInput={handleEditInput}
+    />
+    )
+    :
+    (
+    <Form
+    handleFormSubmit={handleFormSubmit} 
+    todo={todo} 
+    handleInputChange={handleInputChange}
+    />
+    )
+    }
+    <ListsItem
+    tasks={tasks}
+    handleEditClick={handleEditClick}
+    deleter={deleter}
+    />
     </Container>
   );
 }
