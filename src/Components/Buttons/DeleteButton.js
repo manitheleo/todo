@@ -1,10 +1,12 @@
 import { Button } from "@mui/material";
 
 const DeleteButton = (props) => {
-    return (
+  return (
     <>
-    <Button onClick={() => props.deleter(props.index)}>delete</Button>
+      <Button onClick={() => props.handleDeleteItem(props.index)}>
+        delete
+      </Button>
     </>
-    )
-}
+  );
+};
 export default DeleteButton;

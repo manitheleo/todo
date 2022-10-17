@@ -1,21 +1,21 @@
-import {TextField } from "@mui/material"
-import CancelButton from "../Buttons/CancelButton"
-import UpdateButton from "../Buttons/UpdateButton"
+import { TextField } from "@mui/material";
+import CancelButton from "../Buttons/CancelButton";
+import UpdateButton from "../Buttons/UpdateButton";
 
 const EditForm = (props) => {
-    return (
+  return (
     <>
-    <form onSubmit={props.handleEditFormSubmit}>
+      <form onSubmit={props.handleEditFormSubmit}>
         <TextField
-        label="Name" 
-        variant='outlined'
-        value={props.currentTodo.task}
-        onChange={props.handleEditInput}
+          label="Name"
+          variant="outlined"
+          value={props.currentTodo.task}
+          onChange={props.handleEditInput}
         />
-        <UpdateButton/>
-        <CancelButton setEdit={props.setEdit}/>
-        </form>
-        </>
-    )
-}
-export default EditForm
+        <UpdateButton />
+        <CancelButton setEdit={props.setEdit} />
+      </form>
+    </>
+  );
+};
+export default EditForm;
