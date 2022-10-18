@@ -1,12 +1,6 @@
 import { Button } from "@mui/material";
 
-const DeleteButton = (props) => {
-  return (
-    <>
-      <Button onClick={() => props.handleDeleteItem(props.index)}>
-        delete
-      </Button>
-    </>
-  );
+const DeleteButton = ({ handleDeleteItem, id }) => {
+  return <Button onClick={() => handleDeleteItem(id)}>delete</Button>;
 };
 export default DeleteButton;
