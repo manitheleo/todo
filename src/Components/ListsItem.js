@@ -1,8 +1,6 @@
-import { List, ListItem, ListItemIcon, ListItemText } from "@mui/material";
-import FolderIcon from "@mui/icons-material/Folder";
-import CheckBoxIcon from "@mui/icons-material/CheckBox";
-import EditButton from "./Buttons/EditButton";
-import DeleteButton from "./Buttons/DeleteButton";
+import { List } from "@mui/material";
+
+import Listitem from "./Listitem";
 const ListsItem = (props) => {
   return (
     <>
@@ -10,83 +8,50 @@ const ListsItem = (props) => {
         {props.tasks.map((item, index) => {
           if (item.state === "pending") {
             return (
-              <ListItem>
-                <ListItemIcon>
-                  <FolderIcon />
-                </ListItemIcon>
-                <ListItemText
-                  primary={item.task}
-                  primaryTypographyProps={{ color: "green" }}
-                />
-                <EditButton
-                  handleEditClick={props.handleEditClick}
-                  item={item}
-                />
-                <DeleteButton
-                  handleDeleteItem={props.handleDeleteItem}
-                  index={index}
-                />
-              </ListItem>
+              <Listitem
+                itemState={item.state}
+                itemTask={item.task}
+                item={item}
+                index={index}
+                itemColor={"green"}
+                handleEditClick={props.handleEditClick}
+                handleDeleteItem={props.handleDeleteItem}
+              />
             );
           } else if (item.state === "in progress") {
             return (
-              <ListItem>
-                <ListItemIcon>
-                  <FolderIcon />
-                </ListItemIcon>
-                <ListItemText
-                  primary={item.task}
-                  primaryTypographyProps={{ color: "blue" }}
-                />
-                <EditButton
-                  handleEditClick={props.handleEditClick}
-                  item={item}
-                />
-                <DeleteButton
-                  handleDeleteItem={props.handleDeleteItem}
-                  index={index}
-                />
-              </ListItem>
+              <Listitem
+                itemState={item.state}
+                itemTask={item.task}
+                item={item}
+                index={index}
+                itemColor={"blue"}
+                handleEditClick={props.handleEditClick}
+                handleDeleteItem={props.handleDeleteItem}
+              />
             );
           } else if (item.state === "completed") {
             return (
-              <ListItem>
-                <ListItemIcon>
-                  <FolderIcon />
-                </ListItemIcon>
-                <ListItemText
-                  primary={item.task}
-                  style={{ textDecoration: "line-Through" }}
-                />
-                <ListItemIcon>
-                  <CheckBoxIcon />
-                </ListItemIcon>
-                <EditButton
-                  handleEditClick={props.handleEditClick}
-                  item={item}
-                />
-                <DeleteButton
-                  handleDeleteItem={props.handleDeleteItem}
-                  index={index}
-                />
-              </ListItem>
+              <Listitem
+                itemState={item.state}
+                itemTask={item.task}
+                item={item}
+                index={index}
+                itemColor={"line-Through"}
+                handleEditClick={props.handleEditClick}
+                handleDeleteItem={props.handleDeleteItem}
+              />
             );
           } else {
             return (
-              <ListItem>
-                <ListItemIcon>
-                  <FolderIcon />
-                </ListItemIcon>
-                <ListItemText primary={item.task} />
-                <EditButton
-                  handleEditClick={props.handleEditClick}
-                  item={item}
-                />
-                <DeleteButton
-                  handleDeleteItem={props.handleDeleteItem}
-                  index={index}
-                />
-              </ListItem>
+              <Listitem
+                itemState={item.state}
+                itemTask={item.task}
+                item={item}
+                index={index}
+                handleEditClick={props.handleEditClick}
+                handleDeleteItem={props.handleDeleteItem}
+              />
             );
           }
         })}
