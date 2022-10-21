@@ -2,18 +2,23 @@ import { TextField } from "@mui/material";
 import CancelButton from "../Buttons/CancelButton";
 import UpdateButton from "../Buttons/UpdateButton";
 
-const EditForm = (props) => {
+const EditForm = ({
+  handleEditFormSubmit,
+  currentTodo,
+  handleEditInput,
+  setEdit,
+}) => {
   return (
     <>
-      <form onSubmit={props.handleEditFormSubmit}>
+      <form onSubmit={handleEditFormSubmit}>
         <TextField
           label="Name"
           variant="outlined"
-          value={props.currentTodo.task}
-          onChange={props.handleEditInput}
+          value={currentTodo.task}
+          onChange={handleEditInput}
         />
         <UpdateButton />
-        <CancelButton setEdit={props.setEdit} />
+        <CancelButton setEdit={setEdit} />
       </form>
     </>
   );

@@ -1,14 +1,13 @@
 import { Button, InputAdornment, TextField } from "@mui/material";
-
-const FormSubmit = (props) => {
+const FormSubmit = ({ handleSubmit, getFieldProps }) => {
   return (
     <>
-      <form onSubmit={props.handleFormSubmit}>
+      <form onSubmit={handleSubmit}>
         <TextField
           label="Name"
+          name="task"
           variant="outlined"
-          value={props.todo}
-          onChange={props.handleInputChange}
+          {...getFieldProps}
           InputProps={{
             endAdornment: (
               <InputAdornment position="end">

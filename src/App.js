@@ -1,4 +1,5 @@
 import "./App.css";
+import { useFormik } from "formik";
 import { Container } from "@mui/material";
 import { useState } from "react";
 import ListsItem from "./Components/ListsItem";
@@ -10,20 +11,23 @@ function App() {
     { task: "second todo item", state: "completed", id: "3" },
   ];
   const [tasks, setTasks] = useState(defaultTasks);
-  const [todo, setTodo] = useState("");
+  const initialValues = {
+    task: "",
+  };
+  const onSubmit = (values) => {
+    setTasks([...tasks, { id: tasks.length + 1, task: values.task }]);
+    formik.values.task = "";
+  };
+  const formik = useFormik({
+    initialValues,
+    onSubmit,
+  });
   const [edit, setEdit] = useState(false);
   const [currentTodo, setCurrentTodo] = useState({});
-  const handleInputChange = (e) => {
-    setTodo(e.target.value);
-  };
   const handleEditInput = (e) => {
     setCurrentTodo({ ...currentTodo, task: e.target.value });
   };
-  const handleFormSubmit = (e) => {
-    e.preventDefault();
-    setTasks([...tasks, { id: tasks.length + 1, task: todo }]);
-    setTodo("");
-  };
+
   const handleEditFormSubmit = (e) => {
     e.preventDefault();
     handleUpdateTodo(currentTodo.id, { ...currentTodo });
@@ -33,7 +37,6 @@ function App() {
     setTasks((prevTasks) => {
       return prevTasks.map((todo) => (todo.id === id ? updateTodo : todo));
     });
-    console.log(tasks);
   };
   const handleEditClick = (todo) => {
     setEdit(true);
@@ -47,13 +50,12 @@ function App() {
     <Container>
       <ToggleEdit
         edit={edit}
+        handleSubmit={formik.handleSubmit}
+        getFieldProps={formik.getFieldProps("task")}
         setEdit={setEdit}
         currentTodo={currentTodo}
-        todo={todo}
-        handleInputChange={handleInputChange}
         handleEditFormSubmit={handleEditFormSubmit}
         handleEditInput={handleEditInput}
-        handleFormSubmit={handleFormSubmit}
       />
 
       <ListsItem
