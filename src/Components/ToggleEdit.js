@@ -1,8 +1,9 @@
 import EditForm from "./Forms/EditForm";
 import FormSubmit from "./Forms/FormSubmit";
 const ToggleEdit = ({
-  formik,
+  handleSubmit,
   edit,
+  getFieldProps,
   handleEditFormSubmit,
   setEdit,
   currentTodo,
@@ -18,7 +19,9 @@ const ToggleEdit = ({
       />
     );
   } else {
-    return <FormSubmit formik={formik} />;
+    return (
+      <FormSubmit getFieldProps={getFieldProps} handleSubmit={handleSubmit} />
+    );
   }
 };
 export default ToggleEdit;

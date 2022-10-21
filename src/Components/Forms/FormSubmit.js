@@ -1,14 +1,13 @@
 import { Button, InputAdornment, TextField } from "@mui/material";
-
-const FormSubmit = ({ formik }) => {
+const FormSubmit = ({ handleSubmit, getFieldProps }) => {
   return (
     <>
-      <form onSubmit={formik.handleSubmit}>
+      <form onSubmit={handleSubmit}>
         <TextField
           label="Name"
           name="task"
           variant="outlined"
-          {...formik.getFieldProps("task")}
+          {...getFieldProps}
           InputProps={{
             endAdornment: (
               <InputAdornment position="end">

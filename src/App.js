@@ -50,9 +50,10 @@ function App() {
     <Container>
       <ToggleEdit
         edit={edit}
+        handleSubmit={formik.handleSubmit}
+        getFieldProps={formik.getFieldProps("task")}
         setEdit={setEdit}
         currentTodo={currentTodo}
-        formik={formik}
         handleEditFormSubmit={handleEditFormSubmit}
         handleEditInput={handleEditInput}
       />
