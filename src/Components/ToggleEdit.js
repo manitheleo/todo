@@ -1,23 +1,24 @@
 import EditForm from "./Forms/EditForm";
 import Form from "./Forms/Form";
-const ToggleEdit = (props) => {
-  if (props.edit) {
+const ToggleEdit = ({
+  formik,
+  edit,
+  handleEditFormSubmit,
+  setEdit,
+  currentTodo,
+  handleEditInput,
+}) => {
+  if (edit) {
     return (
       <EditForm
-        handleEditFormSubmit={props.handleEditFormSubmit}
-        setEdit={props.setEdit}
-        currentTodo={props.currentTodo}
-        handleEditInput={props.handleEditInput}
+        handleEditFormSubmit={handleEditFormSubmit}
+        setEdit={setEdit}
+        currentTodo={currentTodo}
+        handleEditInput={handleEditInput}
       />
     );
   } else {
-    return (
-      <Form
-        handleFormSubmit={props.handleFormSubmit}
-        todo={props.todo}
-        handleInputChange={props.handleInputChange}
-      />
-    );
+    return <Form formik={formik} />;
   }
 };
 export default ToggleEdit;
