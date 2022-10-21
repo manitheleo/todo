@@ -2,7 +2,6 @@ import { List } from "@mui/material";
 
 import Listitem from "./Listitem";
 const ListsItem = ({ tasks, handleEditClick, handleDeleteItem }) => {
-  console.log(tasks);
   return (
     <List dense>
       {tasks.map((item, index) => {

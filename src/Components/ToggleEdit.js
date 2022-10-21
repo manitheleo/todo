@@ -1,5 +1,5 @@
 import EditForm from "./Forms/EditForm";
-import Form from "./Forms/Form";
+import FormSubmit from "./Forms/FormSubmit";
 const ToggleEdit = ({
   formik,
   edit,
@@ -18,7 +18,7 @@ const ToggleEdit = ({
       />
     );
   } else {
-    return <Form formik={formik} />;
+    return <FormSubmit formik={formik} />;
   }
 };
 export default ToggleEdit;
