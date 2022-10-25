@@ -2,6 +2,7 @@ import "./App.css";
 import { useFormik } from "formik";
 import { Container } from "@mui/material";
 import { useState } from "react";
+import * as Yup from "yup";
 import ListsItem from "./Components/ListsItem";
 import ToggleEdit from "./Components/ToggleEdit";
 function App() {
@@ -14,12 +15,16 @@ function App() {
   const initialValues = {
     task: "",
   };
+  const validationSchema = Yup.object({
+    task: Yup.string("").required("Please Enter the task"),
+  });
   const onSubmit = (values) => {
     setTasks([...tasks, { id: tasks.length + 1, task: values.task }]);
     formik.values.task = "";
   };
   const formik = useFormik({
     initialValues,
+    validationSchema,
     onSubmit,
   });
   const [edit, setEdit] = useState(false);
@@ -50,6 +55,8 @@ function App() {
     <Container>
       <ToggleEdit
         edit={edit}
+        error={formik.touched.task && Boolean(formik.errors.task)}
+        helperText={formik.touched.task && formik.errors.task}
         handleSubmit={formik.handleSubmit}
         getFieldProps={formik.getFieldProps("task")}
         setEdit={setEdit}
