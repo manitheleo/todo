@@ -1,10 +1,12 @@
 import { Button, InputAdornment, TextField } from "@mui/material";
-const FormSubmit = ({ handleSubmit, getFieldProps }) => {
+const FormSubmit = ({ handleSubmit, getFieldProps, handleError }) => {
   return (
     <>
       <form onSubmit={handleSubmit}>
         <TextField
           label="Name"
+          error={handleError}
+          helperText={handleError}
           name="task"
           variant="outlined"
           {...getFieldProps}
