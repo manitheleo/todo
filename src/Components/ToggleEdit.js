@@ -8,7 +8,7 @@ const ToggleEdit = ({
   setEdit,
   currentTodo,
   handleEditInput,
-  error,
+  handleError,
 }) => {
   if (edit) {
     return (
@@ -24,7 +24,7 @@ const ToggleEdit = ({
       <FormSubmit
         getFieldProps={getFieldProps}
         handleSubmit={handleSubmit}
-        error={error}
+        handleError={handleError}
       />
     );
   }

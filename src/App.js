@@ -55,7 +55,7 @@ function App() {
     <Container>
       <ToggleEdit
         edit={edit}
-        error={formik.touched.task && formik.errors.task}
+        handleError={formik.touched.task && formik.errors.task}
         handleSubmit={formik.handleSubmit}
         getFieldProps={formik.getFieldProps("task")}
         setEdit={setEdit}
