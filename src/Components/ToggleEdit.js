@@ -9,7 +9,6 @@ const ToggleEdit = ({
   currentTodo,
   handleEditInput,
   error,
-  helperText,
 }) => {
   if (edit) {
     return (
@@ -26,7 +25,6 @@ const ToggleEdit = ({
         getFieldProps={getFieldProps}
         handleSubmit={handleSubmit}
         error={error}
-        helperText={helperText}
       />
     );
   }
