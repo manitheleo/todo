@@ -7,6 +7,7 @@ const ListsItem = ({ tasks, handleEditClick, handleDeleteItem }) => {
       {tasks.map((item, index) => {
         return (
           <Listitem
+            key={index}
             item={item}
             id={index}
             handleEditClick={handleEditClick}
