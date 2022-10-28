@@ -11,7 +11,6 @@ test("Should return todo item current text, Given the user click on edit button"
       name: /edit/i,
     })
   );
-  waitFor(() => {
-    expect(handleEditClick).toBe("first todo item");
-  });
+
+  expect(handleEditClick).toHaveBeenCalledWith("first todo item");
 });
