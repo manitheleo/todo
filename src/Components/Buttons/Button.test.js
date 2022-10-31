@@ -28,7 +28,7 @@ test("should delete todo item current text,Given the user click delete button", 
   );
   expect(handleDeleteItem).toHaveBeenCalledWith("1");
 });
-test("should update the todo item current text Given the user click update button", async () => {
+test("should cancel the todo item current text Given the user click cancel button", async () => {
   const setEdit = jest.fn();
   render(<CancelButton setEdit={setEdit} />);
   userEvent.click(
