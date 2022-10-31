@@ -2,7 +2,7 @@ import { screen, render, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import EditForm from "./EditForm";
 
-test("when the user click edit form", () => {
+test("Should update todo item current text, Given the user click on update button", () => {
   const handleEditFormSubmit = jest.fn();
   render(
     <EditForm onSubmit={handleEditFormSubmit} currentTodo="first todo item" />
